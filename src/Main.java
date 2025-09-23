@@ -1,58 +1,41 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Library Management System ===\n");
-        System.out.println("Adding books to library...");
+        Media book1 = new Book("Java Fundamentals", "B001", "Robert Martin");
+        Media dvd1 = new DVD("OOP Concepts", "D001", "Tech Films");
+        Media mag1 = new Magazine("Programming Weekly", "M001", 15);
 
-        Library library = new Library();
-        Book book1 = new Book("Java Programming", "John Smith", "1234567890", 2020);
-        Book book2 = new Book("Data Structures", "Jane Doe", "9876543210", 2019);
-        Book book3 = new Book("Web Development", "Mike Johnson", "5555666677", 2021);
+        LibraryUser student = new Student("Alice Johnson", "S12345");
+        LibraryUser teacher = new Teacher("Dr. Smith", "T001");
+        LibraryUser librarian = new Librarian("Mary Brown", "L001");
 
-        library.addBook(book1);
-        library.addBook(book2);
-        library.addBook(book3);
+        System.out.println("=== Library Management System Demo ===\n");
 
-        System.out.println();
+        System.out.println("Available Media:");
+        displayMediaInfo(book1);
+        displayMediaInfo(dvd1);
+        displayMediaInfo(mag1);
 
-        library.displayAllBooks();
+        System.out.println("\n=== Borrowing Test ===");
+        student.borrowMedia(book1);
+        teacher.borrowMedia(dvd1);
+        student.borrowMedia(book1); // Should fail if already borrowed
 
-        System.out.println("Borrowing Java Programming...");
-        if (library.borrowBook("1234567890")) {
-            System.out.println("Book borrowed successfully!");
-        } else {
-            System.out.println("Book is not available for borrowing.");
-        }
-        System.out.println();
+        System.out.println("\n=== Returning Test ===");
+        student.returnMedia(book1);
+        librarian.borrowMedia(book1);
 
-        System.out.println("Trying to borrow Java Programming again...");
-        if (library.borrowBook("1234567890")) {
-            System.out.println("Book borrowed successfully!");
-        } else {
-            System.out.println("Book is not available for borrowing.");
-        }
-        System.out.println();
+        System.out.println("\n=== User Information ===");
+        displayUserInfo(student);
+        displayUserInfo(teacher);
+        displayUserInfo(librarian);
+    }
 
-        library.displayAvailableBooks();
+    public static void displayMediaInfo(Media media) {
+        media.displayInfo();
+    }
 
-        System.out.println("Returning Java Programming...");
-        if (library.returnBook("1234567890")) {
-            System.out.println("Book returned successfully!");
-        } else {
-            System.out.println("Book was not borrowed.");
-        }
-        System.out.println();
-
-        System.out.println("Testing validation...");
-        try {
-            Book invalid = new Book("Test Book", "Test Author", "123", 1400);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            if (e.getMessage().contains("year")) {
-                System.out.println("Invalid year provided. Year must be between 1450 and 2025");
-            }
-            if (e.getMessage().contains("ISBN")) {
-                System.out.println("Invalid ISBN. ISBN must be 10 or 13 characters long");
-            }
-        }
+    public static void displayUserInfo(LibraryUser user) {
+        System.out.println(user.getUserType() + " - Max borrow limit: " + user.getMaxBorrowLimit() + " items");
     }
 }
+
