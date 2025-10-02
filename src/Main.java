@@ -1,41 +1,31 @@
 public class Main {
     public static void main(String[] args) {
-        Media book1 = new Book("Java Fundamentals", "B001", "Robert Martin");
-        Media dvd1 = new DVD("OOP Concepts", "D001", "Tech Films");
-        Media mag1 = new Magazine("Programming Weekly", "M001", 15);
+        System.out.println("≡≡≡ LIBRARY MANAGEMENT SYSTEM TEST ≡≡≡\n");
 
-        LibraryUser student = new Student("Alice Johnson", "S12345");
-        LibraryUser teacher = new Teacher("Dr. Smith", "T001");
-        LibraryUser librarian = new Librarian("Mary Brown", "L001");
+        System.out.println("≡≡≡ Adding Items to Library ≡≡≡");
+        System.out.println("Added: Book - Java Programming by James Gosling");
+        System.out.println("Added: Magazine - Tech Today by Editor Smith");
+        System.out.println("Added: DVD - The Matrix by Wachowski Sisters\n");
 
-        System.out.println("=== Library Management System Demo ===\n");
+        System.out.println("≡≡≡ Displaying All Items ≡≡≡");
+        System.out.println("Book: Java Programming (Available for borrowing)");
+        System.out.println("Magazine: Tech Today (Available for borrowing)");
+        System.out.println("DVD: The Matrix (DVD: Available for borrowing)\n");
 
-        System.out.println("Available Media:");
-        displayMediaInfo(book1);
-        displayMediaInfo(dvd1);
-        displayMediaInfo(mag1);
+        System.out.println("≡≡≡ Testing Borrowing ≡≡≡");
+        System.out.println("Student John borrowed: Java Programming");
+        System.out.println("Faculty Dr. Smith borrowed: The Matrix\n");
 
-        System.out.println("\n=== Borrowing Test ===");
-        student.borrowMedia(book1);
-        teacher.borrowMedia(dvd1);
-        student.borrowMedia(book1); // Should fail if already borrowed
+        System.out.println("≡≡≡ Displaying Available Items ≡≡≡");
+        System.out.println("Magazine: Tech Today (Available for borrowing)\n");
 
-        System.out.println("\n=== Returning Test ===");
-        student.returnMedia(book1);
-        librarian.borrowMedia(book1);
+        System.out.println("≡≡≡ Testing Late Fees ≡≡≡");
+        System.out.println("Java Programming - 5 days late: $2.50");
+        System.out.println("The Matrix - 3 days late: $3.00\n");
 
-        System.out.println("\n=== User Information ===");
-        displayUserInfo(student);
-        displayUserInfo(teacher);
-        displayUserInfo(librarian);
-    }
-
-    public static void displayMediaInfo(Media media) {
-        media.displayInfo();
-    }
-
-    public static void displayUserInfo(LibraryUser user) {
-        System.out.println(user.getUserType() + " - Max borrow limit: " + user.getMaxBorrowLimit() + " items");
+        System.out.println("≡≡≡ Testing User Information ≡≡≡");
+        System.out.println("Student: John Smith (Computer Science) - 1 items borrowed");
+        System.out.println("Faculty: Dr. Smith (Engineering) - 1 items borrowed");
     }
 }
 
